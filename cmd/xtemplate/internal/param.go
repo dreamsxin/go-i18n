@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/youthlin/t"
-	"github.com/youthlin/t/errors"
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n"
+	"github.com/dreamsxin/go-i18n/errors"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 // Param 输入参数
@@ -125,7 +125,7 @@ func (ctx *Context) header() *translator.Entry {
 		"MIME-Version: 1.0",
 		"Content-Type: text/plain; charset=CHARSET",
 		"Content-Transfer-Encoding: 8bit",
-		"X-Created-By: xtemplate(https://github.com/youthlin/t/tree/main/cmd/xtemplate)",
+		"X-Created-By: xtemplate(https://github.com/dreamsxin/go-i18n/tree/main/cmd/xtemplate)",
 	}
 	if ctx.hasPlural {
 		headers = append(headers, "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;")

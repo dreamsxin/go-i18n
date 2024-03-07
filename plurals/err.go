@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 // ErrAntlr is a error when antlr process fails

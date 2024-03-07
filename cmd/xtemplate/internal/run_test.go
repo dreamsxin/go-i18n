@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 func TestGlob(t *testing.T) {

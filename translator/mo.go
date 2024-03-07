@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 // https://www.gnu.org/software/gettext/manual/html_node/MO-Files.html#MO-Files
@@ -66,7 +66,7 @@ const (
 	eot        = "\x04"
 	moMagic    = 0x950412de
 	moMagicBig = 0xde120495
-	flag       = "ThisFileIsGenerateBy:github.com/youthlin/t" + nul
+	flag       = "ThisFileIsGenerateBy:github.com/dreamsxin/go-i18n" + nul
 	flagLen    = len(flag)        // 43
 	offsetO    = 28 + 4 + flagLen // 75: 28=固定header 4=uint32:flagLen 43=string:flag
 )

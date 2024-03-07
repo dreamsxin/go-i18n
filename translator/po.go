@@ -9,7 +9,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 var errEmptyPo = fmt.Errorf("empty po file")

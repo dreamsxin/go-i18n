@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/youthlin/t"
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 // Keyword gettext keyword

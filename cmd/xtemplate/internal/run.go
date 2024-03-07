@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"text/template/parse"
 
-	"github.com/youthlin/t"
-	"github.com/youthlin/t/errors"
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n"
+	"github.com/dreamsxin/go-i18n/errors"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 var noopFun = func() string { return "" }

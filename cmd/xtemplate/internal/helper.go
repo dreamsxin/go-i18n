@@ -3,7 +3,7 @@ package internal
 import (
 	"strings"
 
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 const eot = "\x04"

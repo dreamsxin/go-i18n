@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/youthlin/t"
-	"github.com/youthlin/t/cmd/xtemplate/internal"
+	"github.com/dreamsxin/go-i18n"
+	"github.com/dreamsxin/go-i18n/cmd/xtemplate/internal"
 )
 
 // Version the version
@@ -70,7 +70,7 @@ func buildParam() *internal.Param {
 	flag.Parse()
 	if *version {
 		fmt.Fprintf(os.Stdout, `xtemplate
-https://github.com/youthlin/t/tree/main/cmd/xtemplate
+https://github.com/dreamsxin/go-i18n/tree/main/cmd/xtemplate
 by Youth．霖(https://youthlin.com)
 version: %v
 `,

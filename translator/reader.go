@@ -3,7 +3,7 @@ package translator
 import (
 	"io"
 
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 type reader struct {

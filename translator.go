@@ -1,8 +1,8 @@
 package t
 
 import (
-	"github.com/youthlin/t/f"
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n/f"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 // Translator  翻译接口

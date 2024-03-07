@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/youthlin/t/f"
+	"github.com/dreamsxin/go-i18n/f"
 )
 
 const (

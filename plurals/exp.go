@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/youthlin/t/errors"
-	"github.com/youthlin/t/plurals/parser"
+	"github.com/dreamsxin/go-i18n/errors"
+	"github.com/dreamsxin/go-i18n/plurals/parser"
 )
 
 // Eval 传入复数表达式，返回 n 应该使用哪种复数形式

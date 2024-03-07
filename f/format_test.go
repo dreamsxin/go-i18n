@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/youthlin/t/f"
+	"github.com/dreamsxin/go-i18n/f"
 )
 
 func TestFormat(t *testing.T) {

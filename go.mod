@@ -1,4 +1,4 @@
-module github.com/youthlin/t
+module github.com/dreamsxin/go-i18n
 
 go 1.20
 

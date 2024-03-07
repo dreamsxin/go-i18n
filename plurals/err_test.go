@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
-	"github.com/youthlin/t/errors"
+	"github.com/dreamsxin/go-i18n/errors"
 )
 
 func Test_errorListener_addError(t *testing.T) {

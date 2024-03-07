@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/youthlin/t/plurals"
+	"github.com/dreamsxin/go-i18n/plurals"
 )
 
 // plural 复数

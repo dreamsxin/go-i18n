@@ -5,8 +5,8 @@ import (
 	"io/fs"
 	"strings"
 
-	"github.com/youthlin/t/locale"
-	"github.com/youthlin/t/translator"
+	"github.com/dreamsxin/go-i18n/locale"
+	"github.com/dreamsxin/go-i18n/translator"
 )
 
 const (
