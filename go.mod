@@ -10,6 +10,7 @@ require (
 )
 
 require (
+	github.com/dreamsxin/go-googletrans v0.0.0-20240308115043-960231079d55 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/smarty/assertions v1.15.0 // indirect

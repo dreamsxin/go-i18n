@@ -22,6 +22,8 @@ type Param struct {
 	OutputFile string
 	Debug      bool
 	Remove     bool
+	Src        string
+	Dest       string
 }
 
 // debugPrint print if is debug mode

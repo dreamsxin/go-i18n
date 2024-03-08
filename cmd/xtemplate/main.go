@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
+	t "github.com/dreamsxin/go-i18n"
 	"github.com/dreamsxin/go-i18n/cmd/xtemplate/internal"
-	"github.com/dreamsxin/go-i18n"
 )
 
 // Version the version
@@ -59,6 +59,8 @@ func buildParam() *internal.Param {
 		version  = flag.Bool("v", false, t.T("show version"))
 		help     = flag.Bool("h", false, t.T("show help message"))
 		remove   = flag.Bool("r", false, t.T("remove line breaks"))
+		src      = flag.String("src", "auto", t.T("source language"))
+		dest     = flag.String("dest", "zh-cn", t.T("dest language"))
 	)
 	flag.Usage = func() {
 		fmt.Fprintf(
@@ -91,5 +93,7 @@ version: %v
 		OutputFile: *output,
 		Debug:      *debug,
 		Remove:     *remove,
+		Src:        *src,
+		Dest:       *dest,
 	}
 }

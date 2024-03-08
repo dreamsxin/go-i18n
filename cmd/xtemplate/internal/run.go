@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"text/template/parse"
 
+	google "github.com/dreamsxin/go-googletrans"
 	t "github.com/dreamsxin/go-i18n"
 	"github.com/dreamsxin/go-i18n/errors"
 	"github.com/dreamsxin/go-i18n/translator"
@@ -192,6 +193,17 @@ func extract(ctx *Context, line, name string, kw Keyword, m map[int]string) (*tr
 	}
 	entry.MsgID = txt
 
+	if ctx.Param.Dest != "" {
+		g := google.New(google.TranslateConfig{})
+		result, err := g.Translate(txt, ctx.Param.Src, ctx.Param.Dest)
+		if err != nil {
+			printErr(t.T("Waringing: %v"), err)
+			ctx.debugPrint("  >  >  >  ID=%v err=%v src=%v dest=%v", txt, err, ctx.Param.Src, ctx.Param.Dest)
+		} else {
+			entry.MsgStr = result.Text
+			ctx.debugPrint("  >  >  >  ID=%v trans=%v", txt, result.Text)
+		}
+	}
 	if kw.MsgID2 > 0 {
 		txt, ok := m[kw.MsgID2]
 		if !ok {
