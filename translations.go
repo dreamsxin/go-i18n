@@ -3,6 +3,7 @@ package t
 import (
 	"html/template"
 	"io/fs"
+	"regexp"
 	"sort"
 
 	"github.com/dreamsxin/go-i18n/locale"
@@ -22,6 +23,7 @@ type Translations struct {
 	domains map[string]*Translation // key is domain
 	// sourceCodeLocale 源代码中的语言, 通常应该使用英文
 	sourceCodeLocale string
+	Remove           bool
 }
 
 // NewTranslations create a new Translations 新建翻译集
@@ -195,6 +197,12 @@ func (ts *Translations) N64(msgID, msgIDPlural string, n int64, args ...interfac
 
 // X is a short name of pgettext
 func (ts *Translations) X(msgCtxt, msgID string, args ...interface{}) string {
+	if ts.Remove {
+		re_leadclose_whtsp := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
+		re_inside_whtsp := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+		msgID = re_leadclose_whtsp.ReplaceAllString(msgID, "")
+		msgID = re_inside_whtsp.ReplaceAllString(msgID, " ")
+	}
 	tr := ts.GetOrNoop(ts.domain)
 	tor := tr.GetOrNoop(ts.locale)
 	return tor.X(msgCtxt, msgID, args...)
@@ -207,6 +215,12 @@ func (ts *Translations) XN(msgCtxt, msgID, msgIDPlural string, n int, args ...in
 
 // XN64 is a short name of npgettext
 func (ts *Translations) XN64(msgCtxt, msgID, msgIDPlural string, n int64, args ...interface{}) string {
+	if ts.Remove {
+		re_leadclose_whtsp := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
+		re_inside_whtsp := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+		msgID = re_leadclose_whtsp.ReplaceAllString(msgID, "")
+		msgID = re_inside_whtsp.ReplaceAllString(msgID, " ")
+	}
 	tr := ts.GetOrNoop(ts.domain)
 	tor := tr.GetOrNoop(ts.locale)
 	return tor.XN64(msgCtxt, msgID, msgIDPlural, n, args...)
