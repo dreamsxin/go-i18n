@@ -1,6 +1,7 @@
 package t
 
 import (
+	"html/template"
 	"io/fs"
 	"sort"
 
@@ -209,4 +210,38 @@ func (ts *Translations) XN64(msgCtxt, msgID, msgIDPlural string, n int64, args .
 	tr := ts.GetOrNoop(ts.domain)
 	tor := tr.GetOrNoop(ts.locale)
 	return tor.XN64(msgCtxt, msgID, msgIDPlural, n, args...)
+}
+
+// T is a short name of gettext
+func (ts *Translations) HT(msgID string, args ...interface{}) template.HTML {
+	return template.HTML(ts.X("", msgID, args...))
+}
+
+// N is a short name of nettext
+func (ts *Translations) HN(msgID, msgIDPlural string, n int, args ...interface{}) template.HTML {
+	return template.HTML(ts.XN64("", msgID, msgIDPlural, int64(n), args...))
+}
+
+// N64 is a short name of nettext
+func (ts *Translations) HN64(msgID, msgIDPlural string, n int64, args ...interface{}) template.HTML {
+	return template.HTML(ts.XN64("", msgID, msgIDPlural, n, args...))
+}
+
+// X is a short name of pgettext
+func (ts *Translations) HX(msgCtxt, msgID string, args ...interface{}) template.HTML {
+	tr := ts.GetOrNoop(ts.domain)
+	tor := tr.GetOrNoop(ts.locale)
+	return template.HTML(tor.X(msgCtxt, msgID, args...))
+}
+
+// XN is a short name of npgettext
+func (ts *Translations) HXN(msgCtxt, msgID, msgIDPlural string, n int, args ...interface{}) template.HTML {
+	return template.HTML(ts.XN64(msgCtxt, msgID, msgIDPlural, int64(n), args...))
+}
+
+// XN64 is a short name of npgettext
+func (ts *Translations) HXN64(msgCtxt, msgID, msgIDPlural string, n int64, args ...interface{}) template.HTML {
+	tr := ts.GetOrNoop(ts.domain)
+	tor := tr.GetOrNoop(ts.locale)
+	return template.HTML(tor.XN64(msgCtxt, msgID, msgIDPlural, n, args...))
 }
