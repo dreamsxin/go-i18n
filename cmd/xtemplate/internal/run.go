@@ -5,9 +5,10 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"regexp"
 	"text/template/parse"
 
-	"github.com/dreamsxin/go-i18n"
+	t "github.com/dreamsxin/go-i18n"
 	"github.com/dreamsxin/go-i18n/errors"
 	"github.com/dreamsxin/go-i18n/translator"
 )
@@ -182,6 +183,12 @@ func extract(ctx *Context, line, name string, kw Keyword, m map[int]string) (*tr
 		ctx.debugPrint("  >  >  >  ID=%v missing msg id", name)
 		return nil, false
 
+	}
+	if ctx.Param.Remove {
+		re_leadclose_whtsp := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
+		re_inside_whtsp := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+		txt = re_leadclose_whtsp.ReplaceAllString(txt, "")
+		txt = re_inside_whtsp.ReplaceAllString(txt, " ")
 	}
 	entry.MsgID = txt
 

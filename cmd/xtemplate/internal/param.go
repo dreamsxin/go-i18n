@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dreamsxin/go-i18n"
+	t "github.com/dreamsxin/go-i18n"
 	"github.com/dreamsxin/go-i18n/errors"
 	"github.com/dreamsxin/go-i18n/translator"
 )
@@ -21,6 +21,7 @@ type Param struct {
 	Function   string
 	OutputFile string
 	Debug      bool
+	Remove     bool
 }
 
 // debugPrint print if is debug mode
