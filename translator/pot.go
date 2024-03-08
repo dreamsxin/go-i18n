@@ -35,11 +35,11 @@ func (f *File) SaveAsPot(w io.Writer) error {
 		writeString(buf, msgid, entry.MsgID)
 
 		if entry.MsgID2 == "" {
-			if entry.MsgID == "" { // header
-				writeString(buf, msgstr, entry.MsgStr)
-			} else {
-				writeString(buf, msgstr, "")
-			}
+			// if entry.MsgID == "" { // header
+			writeString(buf, msgstr, entry.MsgStr)
+			// } else {
+			// 	writeString(buf, msgstr, "")
+			// }
 		} else {
 			writeString(buf, msgidPlural, entry.MsgID2)
 			writeString(buf, fmt.Sprintf(msgstrN, 0), "")
