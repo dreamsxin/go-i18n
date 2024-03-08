@@ -126,7 +126,7 @@ func (ctx *Context) header() *translator.Entry {
 		"Language-Team: LANGUAGE <LL@li.org>",
 		"Language: ",
 		"MIME-Version: 1.0",
-		"Content-Type: text/plain; charset=CHARSET",
+		"Content-Type: text/plain; charset=UTF-8",
 		"Content-Transfer-Encoding: 8bit",
 		"X-Created-By: xtemplate(https://github.com/dreamsxin/go-i18n/tree/main/cmd/xtemplate)",
 	}
