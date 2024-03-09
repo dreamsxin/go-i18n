@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	google "github.com/dreamsxin/go-googletrans"
 	t "github.com/dreamsxin/go-i18n"
 	"github.com/dreamsxin/go-i18n/errors"
 	"github.com/dreamsxin/go-i18n/translator"
@@ -101,7 +102,18 @@ func (ctx *Context) Write() error {
 func (ctx *Context) pot() *translator.File {
 	pot := new(translator.File)
 	pot.AddEntry(ctx.header())
+	g := google.New(google.TranslateConfig{})
 	for _, e := range ctx.entries {
+
+		if e.MsgStr == "" && ctx.Param.Dest != "" {
+			result, err := g.Translate(e.MsgID, ctx.Param.Src, ctx.Param.Dest)
+			if err != nil {
+				ctx.debugPrint("  >  >  >  ID=%v Msg=%v err=%v", e.MsgID, e.MsgStr, err)
+			} else {
+				e.MsgStr = result.Text
+				ctx.debugPrint("  >  >  >  ID=%v Msg=%v trans=%v", e.MsgID, e.MsgStr, result.Text)
+			}
+		}
 		pot.AddEntry(e)
 	}
 	return pot
@@ -124,7 +136,7 @@ func (ctx *Context) header() *translator.Entry {
 		"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE",
 		"Last-Translator: FULL NAME <EMAIL@ADDRESS>",
 		"Language-Team: LANGUAGE <LL@li.org>",
-		"Language: ",
+		"Language: " + ctx.Param.Dest,
 		"MIME-Version: 1.0",
 		"Content-Type: text/plain; charset=UTF-8",
 		"Content-Transfer-Encoding: 8bit",

@@ -198,8 +198,10 @@ func (ts *Translations) N64(msgID, msgIDPlural string, n int64, args ...interfac
 // X is a short name of pgettext
 func (ts *Translations) X(msgCtxt, msgID string, args ...interface{}) string {
 	if ts.Remove {
+		re_line_whtsp := regexp.MustCompile(`[\r\n]`)
 		re_leadclose_whtsp := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
 		re_inside_whtsp := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+		msgID = re_line_whtsp.ReplaceAllString(msgID, " ")
 		msgID = re_leadclose_whtsp.ReplaceAllString(msgID, "")
 		msgID = re_inside_whtsp.ReplaceAllString(msgID, " ")
 	}
