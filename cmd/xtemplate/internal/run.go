@@ -22,18 +22,20 @@ func Run(param *Param) error {
 	if err != nil {
 		return err
 	}
-	filenames, err := filepath.Glob(param.Input)
-	param.debugPrint("Glob files=%v err=%+v", filenames, err)
-	if err != nil {
-		return errors.Wrapf(err, t.T("invalid input pattern"))
-	}
+	for _, dir := range param.Input {
+		filenames, err := filepath.Glob(dir)
+		param.debugPrint("Glob files=%v err=%+v", filenames, err)
+		if err != nil {
+			return errors.Wrapf(err, t.T("invalid input pattern"))
+		}
 
-	for _, filename := range filenames {
-		if err := resolveOneFile(filename, ctx); err != nil {
-			if param.Debug {
-				printErr(t.T("failed to process file %v. error message: %+v"), filename, err)
-			} else {
-				printErr(t.T("failed to process file %v. error message: %v"), filename, err)
+		for _, filename := range filenames {
+			if err := resolveOneFile(filename, ctx); err != nil {
+				if param.Debug {
+					printErr(t.T("failed to process file %v. error message: %+v"), filename, err)
+				} else {
+					printErr(t.T("failed to process file %v. error message: %v"), filename, err)
+				}
 			}
 		}
 	}

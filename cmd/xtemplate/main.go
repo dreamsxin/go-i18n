@@ -27,6 +27,17 @@ func initTranslation() {
 	t.SetLocale("")
 }
 
+type InputFlag []string
+
+func (f *InputFlag) String() string {
+	return fmt.Sprintf("%v", []string(*f))
+}
+
+func (f *InputFlag) Set(value string) error {
+	*f = append(*f, value)
+	return nil
+}
+
 func main() {
 	defer func() {
 		if e := recover(); e != nil {
@@ -48,8 +59,11 @@ func main() {
 
 // buildCtx parse os.Args
 func buildParam() *internal.Param {
+
+	var input InputFlag
+	flag.Var(&input, "i", t.T("input file pattern,for example: -i=./dir1 -i=./dir2"))
 	var (
-		input    = flag.String("i", "", t.T("input file pattern"))
+		//input    = flag.String("i", "", t.T("input file pattern"))
 		left     = flag.String("left", "{{", t.T("left delim"))
 		right    = flag.String("right", "}}", t.T("right delim"))
 		keywords = flag.String("k", "", t.T("keywords e.g.: gettext;T:1;N1,2;X:1c,2;XN:1c,2,3"))
@@ -85,7 +99,7 @@ version: %v
 		os.Exit(0)
 	}
 	return &internal.Param{
-		Input:      *input,
+		Input:      input,
 		Left:       *left,
 		Right:      *right,
 		Keyword:    *keywords,

@@ -15,7 +15,7 @@ import (
 
 // Param 输入参数
 type Param struct {
-	Input      string
+	Input      []string
 	Left       string
 	Right      string
 	Keyword    string
