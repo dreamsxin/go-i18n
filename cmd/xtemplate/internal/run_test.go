@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	. "github.com/smartystreets/goconvey/convey"
 	"github.com/dreamsxin/go-i18n/translator"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestGlob(t *testing.T) {
@@ -39,7 +39,7 @@ func TestFile(t *testing.T) {
 func Test_run(t *testing.T) {
 	Convey("run", t, func() {
 		Run(&Param{
-			Input:      "testdata/*.tmpl",
+			Input:      []string{"testdata/*.tmpl"},
 			Left:       "{{",
 			Right:      "}}",
 			Keyword:    "T;X:1c,2;N:1,2;XN:1c,2,3",

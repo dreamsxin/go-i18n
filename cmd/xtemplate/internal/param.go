@@ -106,12 +106,16 @@ func (ctx *Context) pot() *translator.File {
 	for _, e := range ctx.entries {
 
 		if e.MsgStr == "" && ctx.Param.Dest != "" {
-			result, err := g.Translate(e.MsgID, ctx.Param.Src, ctx.Param.Dest)
-			if err != nil {
-				ctx.debugPrint("  >  >  >  ID=%v Msg=%v err=%v", e.MsgID, e.MsgStr, err)
+			if ctx.Param.Dest == ctx.Param.Src {
+				e.MsgStr = e.MsgID
 			} else {
-				e.MsgStr = result.Text
-				ctx.debugPrint("  >  >  >  ID=%v Msg=%v trans=%v", e.MsgID, e.MsgStr, result.Text)
+				result, err := g.Translate(e.MsgID, ctx.Param.Src, ctx.Param.Dest)
+				if err != nil {
+					ctx.debugPrint("  >  >  >  ID=%v Msg=%v err=%v", e.MsgID, e.MsgStr, err)
+				} else {
+					e.MsgStr = result.Text
+					ctx.debugPrint("  >  >  >  ID=%v Msg=%v trans=%v", e.MsgID, e.MsgStr, result.Text)
+				}
 			}
 		}
 		pot.AddEntry(e)
