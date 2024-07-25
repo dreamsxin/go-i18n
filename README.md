@@ -15,15 +15,6 @@ require (
 )
 ```
 
-Gitee 镜像：[gitee.com/youthlin/gottext](gitee.com/youthlin/gottext) (gottext: go + gettext)
-> 鸣谢仓库同步工具：https://github.com/Yikun/hub-mirror-action
-```
-// 使用 gitee 镜像
-// go.mod:
-replace github.com/dreamsxin/go-i18n latest => gitee.com/youthlin/gottext latest
-```
-
-
 ## Usage 使用
 ```go
 path := "path/to/filename.po" // .po, .mo file
@@ -53,14 +44,20 @@ fmt.Println(t.N("%[2]s has one apple", "%[2]s has %[1]d apples", 2, 200, "Bob"))
 t.X("msg_context_text", "msg_id")
 t.X("msg_context_text", "msg_id")
 t.XN("msg_context_text", "msg_id", "msg_plural", n)
+// 输出 template.HTML
+fmt.Println(t.TH("<p>Hello, world</p>"))
 ```
 
 ## API
 ```go
 T(msgID, args...)
+HT(msgID, args...)
 N(msgID, msgIDPlural, n, args...) // and N64
+HN(msgID, msgIDPlural, n, args...) // and N64
 X(msgCTxt, msgID, args...)
+HX(msgCTxt, msgID, args...)
 XN(msgCTxt, msgID, msgIDPlural, n, args...) // and XN64
+HXN(msgCTxt, msgID, msgIDPlural, n, args...) // and XN64
 D(domain)
 L(locale)
 // T:  gettext
@@ -143,6 +140,12 @@ t.D(domain).L(userLang).T("msg_id")
 xgettext -C --add-comments=TRANSLATORS: --force-po -kT -kN:1,2 -kX:2,1c -kXN:2,3,1c  *.go
 ```
 
+## 提取文本自动翻译
+
+```shell
+xtemplate -i ".\*.html" -i ".\*.tpl" -d -r -dest=zh-tw  -k HT -f safehtml,mod,strip,upper,lower -o .\zh-tw.po
+```
+
 ## Done 已完成
 - ✅ mo file 支持 mo 二进制文件
 - ✅ extract from html templates 从模板文件中提取: [xtemplate](cmd/xtemplate/)
@@ -150,14 +153,4 @@ xgettext -C --add-comments=TRANSLATORS: --force-po -kT -kN:1,2 -kX:2,1c -kXN:2,3
 go install github.com/dreamsxin/go-i18n/cmd/xtemplate@latest
 ```
 
-## Links 链接
-- https://www.gnu.org/software/gettext/manual/html_node/index.html
-- https://github.com/search?l=Go&q=gettext&type=Repositories
-- https://github.com/antlr/antlr4/
-- https://blog.gopheracademy.com/advent-2017/parsing-with-antlr4-and-go/
-- https://xuanwo.io/2019/12/11/golang-i18n/ (中文)
-
-
-
 ## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fyouthlin%2Ft.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fyouthlin%2Ft?ref=badge_large)

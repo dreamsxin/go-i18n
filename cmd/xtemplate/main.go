@@ -88,7 +88,7 @@ func buildParam() *internal.Param {
 	if *version {
 		fmt.Fprintf(os.Stdout, `xtemplate
 https://github.com/dreamsxin/go-i18n/tree/main/cmd/xtemplate
-by Youth．霖(https://youthlin.com)
+by Dreamszhu
 version: %v
 `,
 			Version)
